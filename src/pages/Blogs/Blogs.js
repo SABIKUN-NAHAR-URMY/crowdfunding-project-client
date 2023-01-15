@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import img1 from '../../images/img1.jpg';
 import BlogsCard from './BlogsCard';
 import { FaFacebookSquare, FaTwitterSquare, FaLinkedin, FaInstagramSquare, FaEnvelopeOpenText, FaPhoneVolume, FaMapMarkerAlt } from "react-icons/fa";
 import './Blogs.css';
+import Loading from '../Loading/Loading';
 
 const Blogs = () => {
     const [blogsCard, setBlogsCard] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:5000/blogs')
             .then(res => res.json())
-            .then(data => setBlogsCard(data))
+            .then(data => {
+                setLoading(false);
+                setBlogsCard(data)
+            })
     }, [])
+
+    if(loading){
+        return <Loading></Loading>
+    }
 
     return (
         <div>

@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import donate from '../../images/donate.png';
 import { FaAngleDoubleRight } from "react-icons/fa";
-// import './BlogsCard.css';
 
 const BlogsCard = ({ blogCard }) => {
     console.log(blogCard);
-    const { id, image, title, details, date } = blogCard;
+    const { _id, image, title, details, date } = blogCard;
     return (
         <div className="card lg:w-96 bg-base-100 shadow-xl mb-10" data-aos="fade-up" data-aos-duration="3000">
             <figure className='relative'>
@@ -20,7 +19,7 @@ const BlogsCard = ({ blogCard }) => {
                 <p className='text-lg' data-aos="fade-up">{
                     details.length > 100 ? details.slice(0, 100) + '...' : details
                 } </p>
-                <Link to={`/details/${id}`}>
+                <Link to={`/details/${_id}`}>
                     <h1 className='text-green-600 text-lg font-bold py-5 flex items-center' data-aos="fade-up" >Read More <FaAngleDoubleRight className='ml-2'></FaAngleDoubleRight></h1>
                 </Link>
             </div>

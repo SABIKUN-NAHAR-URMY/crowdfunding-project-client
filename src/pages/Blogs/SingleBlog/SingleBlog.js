@@ -6,7 +6,7 @@ import '../Blogs.css';
 
 const SingleBlog = () => {
     const singleBlog = useLoaderData();
-    console.log(singleBlog);
+
     return (
         <div className='mb-10'>
             {/* banner section for blogs */}
