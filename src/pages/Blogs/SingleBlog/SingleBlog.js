@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { FaCalculator, FaAngleRight, FaFacebook, FaTwitter, FaLinkedin, FaWhatsappSquare } from "react-icons/fa";
 import img2 from '../../../images/working.jpg';
 import '../Blogs.css';
@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 const SingleBlog = () => {
     const { user } = useContext(AuthContext);
     const singleBlog = useLoaderData();
+    const navigate = useNavigate();
 
     const [update, setUpdate] = useState(false);
 
@@ -49,7 +50,7 @@ const SingleBlog = () => {
     }
 
     useEffect(() => {
-        fetch(`https://code-kids-project-server.vercel.app/comments/queryBlog=${singleBlog?.title}`)
+        fetch(`https://code-kids-project-server.vercel.app/comments/queryBlog?blogName=${singleBlog?.title}`)
             .then(res => res.json())
             .then(data => {
                 setComments(data);
@@ -171,7 +172,7 @@ const SingleBlog = () => {
                         <input className='btn btn-active btn-ghost w-full' type="submit" value="Post Comment" />
                     </form>
                     :
-                    <h1 className='text-3xl font-bold text-center m-5'>Please Login to Add a Comment!<button className='btn btn-link text-3xl font-bold text-slate-700'> <Link to='/login'>Login</Link></button></h1>
+                    <h1 className='text-3xl font-bold text-center m-5'>Please Login to Add a Comment!<button onClick={navigate('/')} className='btn btn-link text-3xl font-bold text-slate-700'> <Link to='/login'>Login</Link></button></h1>
                     }
                 </div>
             </section>
