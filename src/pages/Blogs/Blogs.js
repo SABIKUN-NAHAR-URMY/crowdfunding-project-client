@@ -25,11 +25,6 @@ const Blogs = () => {
         <div>
             {/* banner section for blogs */}
             <section>
-                {/* <div className='relative'>
-                        <img className='w-full h-96 object-cover absolute' src={img1} alt="" />
-                        <h1 className='absolute text-7xl font-bold text-white left-[600px] top-40'>Blogs</h1>
-                    </div> */}
-
                 <div className='blogsBannerImg'>
                     <h1 className='text-4xl font-bold'>Blogs</h1>
                 </div>

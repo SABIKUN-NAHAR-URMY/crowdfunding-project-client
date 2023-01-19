@@ -10,12 +10,6 @@ const BlogsCard = ({ blogCard }) => {
     return (
         <div className="card z-0 lg:w-96 bg-base-100 shadow-xl mb-10" data-aos="fade-up" data-aos-duration="3000">
 
-            {/* <PhotoProvider>
-                <PhotoView src={image}>
-                    <figure><img className='rounded-lg' src={image} style={{ cursor: 'pointer', objectFit: 'cover' }} alt="Shoes" /></figure>
-                </PhotoView>
-            </PhotoProvider> */}
-
             <PhotoProvider>
             <PhotoView src={image}>
             <figure className='relative'>

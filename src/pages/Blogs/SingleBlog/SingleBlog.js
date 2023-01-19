@@ -60,10 +60,6 @@ const SingleBlog = () => {
         <div className='mb-10'>
             {/* banner section for blogs */}
             <section>
-                {/* <div className='relative'>
-                        <img className='w-full h-96 object-cover absolute' src={img1} alt="" />
-                        <h1 className='absolute text-7xl font-bold text-white left-[600px] top-40'>Blogs Details</h1>
-                    </div> */}
 
                 <div className='blogsBannerImg'>
                     <h1 className='text-4xl font-bold'>Blog Details</h1>
@@ -137,6 +133,7 @@ const SingleBlog = () => {
                 {/* Comment section  */}
 
                 <div className='w-[1000px] mx-auto'>
+                    <h1 className='text-2xl font-bold text-center mt-7'>All Comments</h1>
                     {
                         comments.map(comment => {
                             return (
@@ -144,8 +141,8 @@ const SingleBlog = () => {
                                     <div className="m-5 card bg-base-100 shadow-xl">
                                         <div className="card-body">
                                             
-                                            <h1 className='text-xl font-bold'>{comment?.userName}</h1>
-                                            <h2 className='text-xl font-bold'>Date and Time: {comment?.dateAndTime}</h2>
+                                            <h1 className='text-lg font-bold'>{comment?.userName}</h1>
+                                            <h2 className='text-lg font-bold'>Date and Time: {comment?.dateAndTime}</h2>
                                             <h1>{comment?.comment}</h1>
                                         
                                         </div>
@@ -160,9 +157,11 @@ const SingleBlog = () => {
 
 
                 <div className="card w-[1000px] mx-auto bg-green-100 shadow-xl mt-8" data-aos="fade-up" data-aos-duration="3000">
-                    <p className='text-3xl font-bold p-3'>Leave A Message</p>
+                    <p className='text-3xl text-center font-bold p-3'>Leave A Message</p>
 
-                    <form onSubmit={handelComment} className='m-5 '>
+                    {
+                        user?.uid ?
+                        <form onSubmit={handelComment} className='m-5 '>
                         <textarea name='comment' className="textarea textarea-bordered w-full mb-8" placeholder="Write Comment"></textarea>
                         <input type="text" name='name' placeholder='Name' className="input input-bordered w-full mb-8" />
 
@@ -171,6 +170,9 @@ const SingleBlog = () => {
 
                         <input className='btn btn-active btn-ghost w-full' type="submit" value="Post Comment" />
                     </form>
+                    :
+                    <h1 className='text-3xl font-bold text-center m-5'>Please Login to Add a Comment!<button className='btn btn-link text-3xl font-bold text-slate-700'> <Link to='/login'>Login</Link></button></h1>
+                    }
                 </div>
             </section>
         </div>

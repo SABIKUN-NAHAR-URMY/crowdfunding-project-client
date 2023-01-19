@@ -33,13 +33,6 @@ const Gallery = () => {
                 <h1 className='text-4xl font-bold'>Gallery</h1>
             </div>
 
-            {/* <PhotoProvider>
-                <PhotoView src={image}>
-                    <figure><img className='rounded-lg' src={image} style={{ cursor: 'pointer', objectFit: 'cover' }} alt="Shoes" /></figure>
-                </PhotoView>
-            </PhotoProvider> */}
-
-
             <div className='mt-28 mx-9 lg:mx-40'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' data-aos="fade-up" data-aos-duration="3000">
                     <PhotoProvider>

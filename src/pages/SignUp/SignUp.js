@@ -6,7 +6,6 @@ import signImg from '../../images/sign.png';
 
 const SignUp = () => {
     const { createUser, modernizeProfile, loading } = useContext(AuthContext);
-    // const provider = new GoogleAuthProvider();
 
     let navigate = useNavigate();
 
@@ -19,7 +18,6 @@ const SignUp = () => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
-        // const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
 
@@ -31,22 +29,6 @@ const SignUp = () => {
                 navigate('/');
                 // window.location.reload();
                 updateUser(name);
-                // const currentUser = {
-                //     email: user.email
-                // }
-
-                // fetch('https://lens-queen-server.vercel.app/jwt', {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(currentUser)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         navigate(from, { replace: true });
-                //         window.location.reload();
-                //     })
             })
             .catch(error => console.error(error))
     }
@@ -61,31 +43,6 @@ const SignUp = () => {
             .catch(error => console.error(error))
 
     }
-
-    // const handelGoogleLogin = () => {
-    //     providerLogin(provider)
-    //         .then((result) => {
-    //             const user = result.user;
-    //             console.log(user);
-    //             const currentUser = {
-    //                 email: user.email
-    //             }
-
-    //             fetch('https://lens-queen-server.vercel.app/jwt', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify(currentUser)
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     console.log(data);
-    //                     navigate(from, { replace: true });
-    //                 })
-    //         })
-    //         .catch(error => console.error(error));
-    // }
 
     return (
         <div className="hero">
@@ -102,12 +59,6 @@ const SignUp = () => {
                             </label>
                             <input name="name" type="text" placeholder="name" className="input input-bordered" />
                         </div>
-                        {/* <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">PhotoURL</span>
-                            </label>
-                            <input name="photoURL" type="text" placeholder="photoURL" className="input input-bordered" />
-                        </div> */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -124,9 +75,7 @@ const SignUp = () => {
                         <div className="form-control mt-6">
                             <input className="btn bg-slate-600" type="submit" value="Signup" />
                         </div>
-                        {/* <div className="form-control mt-6">
-                            <button className="btn bg-slate-600">Continue with Google</button>
-                        </div> */}
+                        
                     </form>
                     <p className='text-center py-7'>Already have an account? <Link className='text-slate-600' to='/login'>Login</Link></p>
                 </div>

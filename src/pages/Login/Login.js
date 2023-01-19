@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Loading from '../Loading/Loading';
 import loginImg from '../../images/sign.png';
@@ -7,15 +7,10 @@ import loginImg from '../../images/sign.png';
 const Login = () => {
     const { login, loading } = useContext(AuthContext);
 
-    let navigate = useNavigate();
-    let location = useLocation();
-
     if(loading)
     {
         return <Loading></Loading>
     }
-
-    let from = location.state?.from?.pathname || "/";
 
     const handelLogin = event => {
         event.preventDefault();
@@ -28,49 +23,9 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset();
-            // const currentUser = {
-            //     email: user.email
-            // }
-            // //get jwt token
-            // fetch('https://lens-queen-server.vercel.app/jwt',{
-            //     method: 'POST',
-            //     headers: {
-            //         'content-type' : 'application/json'
-            //     },
-            //     body: JSON.stringify(currentUser)
-            // })
-            // .then(res => res.json())
-            // .then(data => {
-            //     localStorage.setItem('token', data.token);
-            //     navigate(from, { replace: true });
-            // })
         })
         .catch(error => console.error(error))
     }
-
-    // const handelGoogleLogin = () =>{
-    //     providerLogin(provider)
-    //     .then((result) => {
-    //         const user = result.user;
-    //         const currentUser = {
-    //             email: user.email
-    //         }
-    //         //get jwt token
-    //         fetch('https://lens-queen-server.vercel.app/jwt',{
-    //             method: 'POST',
-    //             headers: {
-    //                 'content-type' : 'application/json'
-    //             },
-    //             body: JSON.stringify(currentUser)
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             localStorage.setItem('token', data.token);
-    //             navigate(from, { replace: true });
-    //         })
-    //       })
-    //       .catch(error => console.error(error));
-    // }
 
     return (
         <div className="hero">
@@ -97,9 +52,6 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <input className="btn bg-slate-600" type="submit" value="Login" />
                         </div>
-                        {/* <div className="form-control mt-6">
-                            <button className="btn bg-slate-600">Continue with Google</button>
-                        </div> */}
                     </form>
                     <p className='text-center py-7'>New to <strong>aidHumans</strong>? <Link className='text-slate-600' to='/signup'>Signup</Link></p>
                 </div>
