@@ -9,7 +9,7 @@ const Blogs = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://code-kids-project-server.vercel.app/blogs')
             .then(res => res.json())
             .then(data => {
                 setLoading(false);

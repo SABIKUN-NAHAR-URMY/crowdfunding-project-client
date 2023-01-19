@@ -31,7 +31,7 @@ const SingleBlog = () => {
             dateAndTime: new Date()
         }
 
-        fetch('http://localhost:5000/comments', {
+        fetch('https://code-kids-project-server.vercel.app/comments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const SingleBlog = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/comments/queryBlog?blogName=${singleBlog?.title}`)
+        fetch(`https://code-kids-project-server.vercel.app/comments/queryBlog=${singleBlog?.title}`)
             .then(res => res.json())
             .then(data => {
                 setComments(data);
