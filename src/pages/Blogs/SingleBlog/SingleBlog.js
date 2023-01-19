@@ -1,11 +1,60 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaCalculator, FaAngleRight, FaFacebook, FaTwitter, FaLinkedin, FaWhatsappSquare } from "react-icons/fa";
 import img2 from '../../../images/working.jpg';
 import '../Blogs.css';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SingleBlog = () => {
+    const { user } = useContext(AuthContext);
     const singleBlog = useLoaderData();
+
+    const [update, setUpdate] = useState(false);
+
+    const [comments, setComments] = useState([]);
+
+    const handelComment = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const comment = form.comment.value;
+        const name = form.name.value;
+        const email = form.email.value;
+
+        const commentWrite = {
+            blogName: singleBlog.title,
+            comment,
+            name,
+            email,
+            userEmail: user?.email,
+            userName: user?.displayName,
+            dateAndTime: new Date()
+        }
+
+        fetch('http://localhost:5000/comments', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(commentWrite)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                form.reset();
+                toast.success("Comment added!");
+                setUpdate(true);
+            })
+            .catch(error => console.error(error))
+    }
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/comments/queryBlog?blogName=${singleBlog?.title}`)
+            .then(res => res.json())
+            .then(data => {
+                setComments(data);
+            })
+    }, [singleBlog?.title, update]);
 
     return (
         <div className='mb-10'>
@@ -21,7 +70,7 @@ const SingleBlog = () => {
                 </div>
             </section>
 
-            <section className='mt-28'>
+            <section className='mt-28 mb-8'>
                 <div className='lg:grid grid-cols-3 mx-4 lg:mx-36 gap-6'>
                     <div className='col-span-2' data-aos="fade-up" data-aos-duration="3000">
                         <img className='w-full' src={singleBlog.image} alt="" />
@@ -78,21 +127,50 @@ const SingleBlog = () => {
                             </div>
                         </div>
 
-                        {/* Comment section  */}
-                        <div className="card lg:w-96 bg-green-100 shadow-xl mt-8" data-aos="fade-up" data-aos-duration="3000">
-                            <p className='text-3xl font-bold p-3'>Leave A Message</p>
 
-                            <form className='m-5 '>
-                                <textarea name='comment' className="textarea textarea-bordered w-full mb-8" placeholder="Write Comment"></textarea>
-                                <input type="text" name='name' placeholder='Name' className="input input-bordered w-full mb-8" />
-
-                                <p className='text-sm font-thin p-3'>Your email address will not be published.</p>
-                                <input type="text" name='email' placeholder='Email' className="input input-bordered w-full mb-8" />
-
-                                <input className='btn btn-active btn-ghost w-full' type="submit" value="Post Comment" />
-                            </form>
-                        </div>
                     </div>
+                </div>
+            </section>
+
+            <hr className='bg-green-800 h-1 mx-28' />
+            <section>
+                {/* Comment section  */}
+
+                <div className='w-[1000px] mx-auto'>
+                    {
+                        comments.map(comment => {
+                            return (
+                                <div key={comment._id}>
+                                    <div className="m-5 card bg-base-100 shadow-xl">
+                                        <div className="card-body">
+                                            
+                                            <h1 className='text-xl font-bold'>{comment?.userName}</h1>
+                                            <h2 className='text-xl font-bold'>Date and Time: {comment?.dateAndTime}</h2>
+                                            <h1>{comment?.comment}</h1>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
+
+
+
+                <div className="card w-[1000px] mx-auto bg-green-100 shadow-xl mt-8" data-aos="fade-up" data-aos-duration="3000">
+                    <p className='text-3xl font-bold p-3'>Leave A Message</p>
+
+                    <form onSubmit={handelComment} className='m-5 '>
+                        <textarea name='comment' className="textarea textarea-bordered w-full mb-8" placeholder="Write Comment"></textarea>
+                        <input type="text" name='name' placeholder='Name' className="input input-bordered w-full mb-8" />
+
+                        <p className='text-sm font-thin p-3'>Your email address will not be published.</p>
+                        <input type="text" name='email' placeholder='Email' className="input input-bordered w-full mb-8" />
+
+                        <input className='btn btn-active btn-ghost w-full' type="submit" value="Post Comment" />
+                    </form>
                 </div>
             </section>
         </div>

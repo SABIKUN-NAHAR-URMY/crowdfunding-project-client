@@ -2,18 +2,30 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import donate from '../../images/donate.png';
 import { FaAngleDoubleRight } from "react-icons/fa";
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const BlogsCard = ({ blogCard }) => {
     console.log(blogCard);
     const { _id, image, title, details, date } = blogCard;
     return (
-        <div className="card lg:w-96 bg-base-100 shadow-xl mb-10" data-aos="fade-up" data-aos-duration="3000">
+        <div className="card z-0 lg:w-96 bg-base-100 shadow-xl mb-10" data-aos="fade-up" data-aos-duration="3000">
+
+            {/* <PhotoProvider>
+                <PhotoView src={image}>
+                    <figure><img className='rounded-lg' src={image} style={{ cursor: 'pointer', objectFit: 'cover' }} alt="Shoes" /></figure>
+                </PhotoView>
+            </PhotoProvider> */}
+
+            <PhotoProvider>
+            <PhotoView src={image}>
             <figure className='relative'>
-                <img className='w-full h-64' src={image} alt="Shoes" />
-                <div className='-bottom-4 left-5 absolute'>
+                <img className='w-full h-64' src={image} style={{ cursor: 'pointer', objectFit: 'cover' }} alt="Shoes" />
+                <div className='-bottom-4 z-10 left-5 absolute'>
                     <img className='w-10 border rounded-full' src={donate} alt="" />
                 </div>
             </figure>
+            </PhotoView>
+            </PhotoProvider>
             <div className="card-body">
                 <h2 className="text-2xl font-bold" data-aos="fade-up">{title}</h2>
                 <p className='text-lg' data-aos="fade-up">{

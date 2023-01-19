@@ -3,7 +3,9 @@ import Blogs from "../Blogs/Blogs";
 import SingleBlog from "../Blogs/SingleBlog/SingleBlog";
 import Gallery from "../Gallery/Gallery";
 import Home from "../Home/Home";
+import Login from "../Login/Login";
 import Main from "../Main/Main";
+import SignUp from "../SignUp/SignUp";
 
 
 export const router = createBrowserRouter([
@@ -27,7 +29,15 @@ export const router = createBrowserRouter([
             {
                 path:'/gallery',
                 element: <Gallery></Gallery>
-            }
+            },
+            {
+                path:'/login',
+                element: <Login></Login>
+            },
+            {
+                path:'/signup',
+                element: <SignUp></SignUp>
+            },
         ]
     }
 ])
