@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCsOE6o9uxgjcnLXVTDHg79gU0p6kV2_yY",
-  authDomain: "crowdfunding-project-8438e.firebaseapp.com",
-  projectId: "crowdfunding-project-8438e",
-  storageBucket: "crowdfunding-project-8438e.appspot.com",
-  messagingSenderId: "262064570275",
-  appId: "1:262064570275:web:845b2fc3533f05f326a416"
+  apiKey: "AIzaSyCefpcgL5fJeKtBfRQ2dvWIqTCtAyEKnbU",
+  authDomain: "code-kids-project.firebaseapp.com",
+  projectId: "code-kids-project",
+  storageBucket: "code-kids-project.appspot.com",
+  messagingSenderId: "565380152058",
+  appId: "1:565380152058:web:5042c0f65ecbdf05596743"
 };
 
 // Initialize Firebase

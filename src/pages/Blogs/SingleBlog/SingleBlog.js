@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLoaderData, useLocation} from 'react-router-dom';
 import { FaCalculator, FaAngleRight, FaFacebook, FaTwitter, FaLinkedin, FaWhatsappSquare } from "react-icons/fa";
 import img2 from '../../../images/working.jpg';
 import '../Blogs.css';
@@ -9,7 +9,10 @@ import toast from 'react-hot-toast';
 const SingleBlog = () => {
     const { user } = useContext(AuthContext);
     const singleBlog = useLoaderData();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    const [redirect, setRedirect] = useState(false);
 
     const [update, setUpdate] = useState(false);
 
@@ -131,9 +134,13 @@ const SingleBlog = () => {
 
             <hr className='bg-green-800 h-1 mx-28' />
             <section>
+
+            {
+                redirect && <Navigate to="/login" state={{ from: location }} replace />
+            }
                 {/* Comment section  */}
 
-                <div className='w-[1000px] mx-auto'>
+                <div className='lg:w-[1000px] mx-auto'>
                     <h1 className='text-2xl font-bold text-center mt-7'>All Comments</h1>
                     {
                         comments.map(comment => {
@@ -157,7 +164,7 @@ const SingleBlog = () => {
 
 
 
-                <div className="card w-[1000px] mx-auto bg-green-100 shadow-xl mt-8" data-aos="fade-up" data-aos-duration="3000">
+                <div className="card lg:w-[1000px] mx-auto bg-green-100 shadow-xl mt-8" data-aos="fade-up" data-aos-duration="3000">
                     <p className='text-3xl text-center font-bold p-3'>Leave A Message</p>
 
                     {
@@ -172,7 +179,7 @@ const SingleBlog = () => {
                         <input className='btn btn-active btn-ghost w-full' type="submit" value="Post Comment" />
                     </form>
                     :
-                    <h1 className='text-3xl font-bold text-center m-5'>Please Login to Add a Comment!<button onClick={navigate('/')} className='btn btn-link text-3xl font-bold text-slate-700'> <Link to='/login'>Login</Link></button></h1>
+                    <h1 className='text-3xl font-bold text-center m-5'>Please Login to Add a Comment!<button onClick={()=>{setRedirect(true)}} className='btn btn-link text-3xl font-bold text-slate-700'> Login</button></h1>
                     }
                 </div>
             </section>

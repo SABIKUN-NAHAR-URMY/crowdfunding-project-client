@@ -8,13 +8,13 @@ const BlogsCard = ({ blogCard }) => {
     console.log(blogCard);
     const { _id, image, title, details, date } = blogCard;
     return (
-        <div className="card z-0 lg:w-96 bg-base-100 shadow-xl mb-10" data-aos="fade-up" data-aos-duration="3000">
+        <div className="card w-full lg:w-96 bg-base-100 shadow-xl mb-10" data-aos="fade-up" data-aos-duration="3000">
 
             <PhotoProvider>
             <PhotoView src={image}>
             <figure className='relative'>
                 <img className='w-full h-64' src={image} style={{ cursor: 'pointer', objectFit: 'cover' }} alt="Shoes" />
-                <div className='-bottom-4 z-10 left-5 absolute'>
+                <div className='-bottom-4 left-5 absolute'>
                     <img className='w-10 border rounded-full' src={donate} alt="" />
                 </div>
             </figure>
