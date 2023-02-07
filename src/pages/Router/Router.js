@@ -7,6 +7,7 @@ import Gallery from "../Gallery/Gallery";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Main from "../Main/Main";
+import NaturalDisaster from "../NaturalDisaster/NaturalDisaster";
 import NgoSignup from "../NgoSignup/NgoSignup";
 import PartnerDetails from "../PartnerDetails/PartnerDetails";
 import Partners from "../Partners/Partners";
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
                 path:'/partners/:id',
                 element: <PartnerDetails></PartnerDetails>,
                 loader: ({params}) => fetch(`http://localhost:5000/ngoSignup/${params.id}`)
+            },
+            {
+                path:'/naturalDisaster',
+                element: <NaturalDisaster></NaturalDisaster>
             },
             {
                 path:'/dashboard',

@@ -11,6 +11,7 @@ const Navbar = () => {
         <li><Link to='/gallery'>Gallery</Link></li>
         <li><Link to='/campaign'>Start Campaign</Link></li>
         <li><Link to='/ngosignup'>NgoSignup</Link></li>
+        <li><Link to='/naturalDisaster'>Natural Disaster</Link></li>
         <li><Link to='/dashboard'>Dashboard</Link></li>
     </>
     const handelLogOut = () => {
